@@ -1,0 +1,37 @@
+// How to run a test in VS code for python - pytest
+
+0 - one-time set up 
+select python interpreter (.venv) 
+if pytest  (assert) → go to the terminal and install python -m pip install pytest
+if unittest (import unittest) → built in 
+
+1. tell VS code about the tests
+open testing side bar (panel in screenshot) and click ‘configure python tests’ 
+choose pytest 
+choose desired folder 
+in Test folder it should look like this: 
+{
+
+from OG_File import some_func
+
+def test_some_func_does_a_thing():
+    assert some_func(...) == …
+
+}
+
+VS creates this json 
+{
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": "tests"
+}
+if it’s in a folder → “tests/tests_name.py”
+
+run them 
+in testing view - click ‘refresh’ icon 
+tests appear as a tree 
+click play / run all tests 
+use bug to debug 
+
+terminal 
+python -m pytest -q - to check if tests ran at all
