@@ -10,8 +10,6 @@ Week 1: Lecture 2 - Intro to python
 
 """
 
-import math
-
 
 def circle_area(radius): 
     return (3.1415 * (radius **2)) 
