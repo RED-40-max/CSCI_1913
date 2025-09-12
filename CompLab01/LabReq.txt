@@ -1,0 +1,92 @@
+Computer Lab 01: ISBN 
+    due: Mon, Sep 15, 2025 5pm
+
+Premise: ISBN code's 13th 'check digit' 
+    the 13th digit helps to check if the previous digits are correct 
+    
+    => psudocode of ISBN validation 
+    sumodd = sum(odd position digits - base 1) 
+        - 1st (0th index), 3 (2nd index), ect. 
+    sumeven = sum(even position digits - base 1)
+        - 2nd (1th index), 4th (3nd index), ect. 
+
+    total = sumodd + (sumeven * 3) 
+
+    if (total % 10 ) == 0: --> if divisable by 10
+        valid barcode  
+
+
+
+Formal reqirements: 
+    1. name of file
+        isbn13.py
+    2. contain function for validating ISBN
+        check_isbn13(isbn)
+            --> returns T / F 
+            --> input x where 
+                + 0 < x 
+                + x.index < 13 (can have less than 13 tho)
+                + if x.index >= 13 
+                    process left to right 
+            --> apply algorithum above to check if the check-digit no. is correct 
+            --> not expected to handle non-integer data
+    3. contain a function for computing ISBN check digits (last digit)
+        make_isbn13(number)
+            --> return value + input should both be integers 
+            + if input has 13 or more digits 
+            + if has negetive numbers 
+                --> returns -1 
+            --> for valid inputs 
+                + return value start w/ same digits as input
+                and add 1 extra ISBN digit that you calculated 
+
+---- rejected comments / notable ommited workings ------
+
+num_to_true = inital_total % 10 # calculates how much more we need for the number to be true
+        # since it's an odd number, and odd numbers are supposed to be just directly added to the sum,
+        #  we can just directly add it to the end of the number
+        # however, when we add this number at the end, the entire thing will shift, so we have to reverse 
+
+
+
+    inital_total = inital_returned_vals[0]
+    inital_sumodd = inital_returned_vals[1] 
+    inital_sumeven = inital_returned_vals[2]
+
+    # finds what the final digit will be (position wise) 
+    final_digit = len(str(number)) + 1 
+    
+    if(final_digit % 2 == 0): #if the final digit is even
+        
+
+        return (number *10 +  )
+    else: # if the final digit is odd
+        # brute force it w/ each digit from 0-9
+
+         inital_returned_vals = calculate_isbn(number * 10 ) # calls and stores these variable
+
+
+
+         def calculate_isbn(isbn_n): 
+     #initalizes the sum total variables
+    sumodd = 0
+    sumeven = 0
+    
+    str_isbn = str(isbn_n)  #converts isbn int into an string for easier manipulation
+    Length_of_isbn = len(str_isbn) # finds what the total digits are 
+    digits_done = 1 #keeps track of what nth digit we are at  
+
+    while(Length_of_isbn >= digits_done): # if we havn't done all the digits, we arn't done
+
+        if (digits_done % 2 ==0): # if it's at an even position (odd index)
+            sumeven += int(str_isbn[digits_done - 1]) # adds this digit to the sum after casting as int
+        else: #otherwise it's at an odd position (odd index)
+            sumodd += int(str_isbn[digits_done - 1])# adds this digit to the sum after casting as int
+    
+        digits_done += 1 # moves up a digit from the left
+
+    total = sumodd + (sumeven * 3) #calculates the ISBN checking total 
+    Crit_values = [total, sumodd, sumeven] # makes the critical values into a list to return easier
+
+    return Crit_values
+    
