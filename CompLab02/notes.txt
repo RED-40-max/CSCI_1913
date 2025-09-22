@@ -1,0 +1,57 @@
+
+Computer Lab 02: 
+    due monday, sept 22nd 2025 @ 5 pm 
+
+subjects covered: 
+    + python list 
+    + create a list in a loop using .append()
+    + acess value from list by index 
+    + loop over a list 
+    + size of a list 
+
+files: 
+    + nim.py (program, game of nim)
+    + nim_tester.py - given, game of nim 
+    + play_nim.py - given, optional, allows to play game of nim 
+
+Premise: game of Nim 
+2 player strat game 
+    + use tokens that are in rows 
+    + take turns removing tokens 
+    + can choose row and remove token from it 
+    + 1-3 tokens can be removed 
+    + after token removed, other player starts turn
+
+objective of game is to make other player take last token 
+    + if last token is taken - you loose 
+
+
+Formal reqirements: 
++ game state 
+    information stored in comp abt game 
+    number of tokens in each row w/ no. of rows 
+
++ reqired functions: 
+    - create_game_state(size, token_max)
+        -> input size and token_max 
+        -> return a list of ints representing token in each row 
+        -> size => param sets length of new created list
+        --> token_max => controls values, 
+            1st row should have 1 token, 2nd should have 2 tokens, until you hit token_max 
+            then once you hit, and there are more rows, repeate 
+
+    - is_valid_move(game_state, row, takes)
+        -> takes 3 params 
+        -> row => string representing row the user reqests to take tokens from 
+        -> takes => string representing how many tokoens the user wishes to take 
+        -> returns a true / false 
+        -> validating user's raw input, to make sure code plans for weird input strings 
+
+    - update(game_state, row, takes)
+    - draw_game_state(game_state)
+    - is_over(game_state)
+
+
+
+
+---- rejected comments / notable ommited workings ------

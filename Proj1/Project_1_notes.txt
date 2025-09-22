@@ -1,0 +1,70 @@
+Kōnane 
+    Project: Kōnane
+    Author: 
+    purpose: 
+
+(like checkers)
+
+Kōnane is a 2 player strategy game
+    --> rectangular board 
+    --> black and white alternating pattern 
+    8 x 8 board 
+
+--> one player moves stones from the center 
+--> each layer is randomly assinged color, black moves first 
+
+playing game: 
+    --> 1st is black, uses to move black over white onto empty space 
+        player takes white and removes from boared, 
+    --> next player 
+        moves white stone over black to empty space and removes black stone 
+    
+every move is made by jumping over one or more rival stones, if there is an empty space ot move to 
+stone can jump as many of the rival stones as player wants 
+    --> moves must always be in a straight line 
+    --> player never move in 2 directions in one play 
+    --> may not jump diagonally 
+    --> player move a single stone only one direction (L, R, U, D)
+        ---> left, right, up, down
+
+winning the game 
+    --> more moves are made fewwer stones remain on the board 
+    --> player always alts turns 
+    --> player is unable ot make any jump they lost and game is ended 
+    --> game will never end a tie, winner is always last 
+
+board rep 
+    --> nexted tupels 
+        tuple[tuple[int, int], tuple [int, int]]
+    --> first tuple will be start of stone, second will be end of stone 
+
+
+functions: 
+    -> generate_board(an_int)
+        --> function takes a single int 
+        * Square board 
+        * if user uses 0 / negetive value, return an empty list 
+        * filled alternating 1 and 2 
+        --> returns a list of lists
+
+        
+    --> get_board_as_string(board)
+    --> prep_board_human(board)
+    --> is_valid_move(board, move)
+    --> get_valid_moves_for_stone(board, stone)
+    --> get_valid_moves(board, player)
+    --> human_player(board, player)
+    --> random_player(board, player)
+    --> ai_player(board, player)
+    --> play_game(ai_white, ai_black)
+
+rules: 
+    -> no global variables 
+    --> no break keyword 
+    -> You may use any built-in Python objects/methods (string, list, etc.)
+    -> You may use imported functions and class methods from random and math only
+    -> You may not use the break keyword
+    -> You may not use global variables (global constants are okay)
+    -> You may not work with anyone else
+    -> You may not use any form of generative AI
+    -> The work submitted must be your own

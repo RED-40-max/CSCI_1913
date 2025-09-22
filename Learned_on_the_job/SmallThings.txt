@@ -1,0 +1,12 @@
+//
+
+includes how-to's for 
+    * using unicode in python (print)
+//
+
+* using unicode in python (print)
+    -> in order to use unicode, you need to have the escape seqence \u at front 
+    --> unicode = u25CB
+    --> print("\u25CB")
+        prints --> ○
+    

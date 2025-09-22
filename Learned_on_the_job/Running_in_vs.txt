@@ -1,0 +1,12 @@
+running files in VS code: 
+
+    1. install extentsions (python, java, ect)
+    2. navigate in file's terminal (copy reletive path)
+        --> file_folder/file.py
+    3. Open terminal 
+        --> 'Ctrl + ' / backtick 
+    4. execute code in specific command 
+        python: python3 file_folder/file.py
+            --> file.py
+
+

@@ -7,20 +7,24 @@ Write a python function that determines whether a whole number greater than one 
 
 """
 
-
 def is_prime(op_num): 
 
-    Is_really_prime = true # assumes it is prime at first 
-    sq_of_n = (op_num ** (0.5)) 
     counter_no = 2
 
-    while (counter_no < sq_of_n): 
-        divi_n = op_num /sq_of_n
+    while (counter_no < op_num): 
 
-        if (divi_n % 1 > 1): 
-
+        if (op_num % counter_no == 0 ): 
+            return False
 
         counter_no += 1
 
+    return True
 
-    return 
+if __name__ == "__main__":
+    assert is_prime(2) == True
+    assert is_prime(4) == False
+    assert is_prime(29) == True
+    assert is_prime(53) == True
+    assert is_prime(54) == False
+
+    print("Passed all tests")
