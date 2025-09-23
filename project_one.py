@@ -28,13 +28,15 @@ Notes
 
 * 
 
-
 """
 
+#W1
 def generate_board(an_int): 
-    """ xx
-        - takes int input 
-        - makes a int x int board
+    """ Creates a int square board with checkerbord values 
+        --> takes an int input 
+        * creates a nested list of int x int 
+        * sets alternating tokens for each nested list 
+        --> returns the final board 
     """
 
     final_board = [] # mass / y_axis access
@@ -59,7 +61,6 @@ def generate_board(an_int):
             if (previous_val == 1): #if it starts with 1 
                 inner_board.append(2) #if the last one was 1, add 2
                 previous_val = 2 #change the value for the next iter
-
             elif (previous_val == 2): 
                 inner_board.append(1) 
                 previous_val = 1
@@ -69,9 +70,12 @@ def generate_board(an_int):
     return final_board
 
 def get_board_as_string(board): 
-    """ xx
-        - takes int input 
-        - makes a int x int board
+    """ Prints the board given the input
+        --> input is the board as a nested list 
+        * prints the colum number 
+        * prints row number + token 
+        * prints seperation bars 
+        --> overall, outputs a formatted / cleaned board w/ row + column numbers
     """
 
     #prints the x_axis on top 
@@ -100,7 +104,6 @@ def get_board_as_string(board):
 
             if (board[y_axis][x_axis] == 1): #blank token 
                 symbol_of_token = "\u25CB" # to use unicode in python, use escape sequence
-
             elif (board[y_axis][x_axis] == 2): #a filled token 
                 symbol_of_token = "\u25CF"
 
@@ -114,16 +117,19 @@ def get_board_as_string(board):
         print("-+", end = "")
     print("")
     
-
 def prep_board_human(board): 
-    """ss
-        - s
-        
+    """ Shows board + asks human to make a move 
+        --> input is the current nested list board 
+        --> outputs / prints a board 
+            * asks human to input valiues 
+            * checks if values are within bounds of rules 
+                * if not, asks to re-enter value
+            * executes the move 
     """
 
     waiting_for_valid_move = True 
 
-    while(waiting_for_valid_move): 
+    while(waiting_for_valid_move): # loop for valid move 
         
         # prints board as a string 
         get_board_as_string(board) 
@@ -144,9 +150,13 @@ def prep_board_human(board):
             print("Invalid move, try again!\n")
 
 def is_valid_move(board, move): 
-    """ xx
-        - takes int input 
-        - makes a int x int board
+    """ Checks if move is within bounds of rules 
+        --> inputs a nested list board
+        --> inputs a nested move list 
+        * checks tokens of the inputed values 
+        * checks if the index / coordinates are valid 
+        * checks if any of the tokens / cooridnates are at the edge of the board 
+        --> outputs a boolean indicating if it is or isn't a valid move
     """
     
     IsValid = True # valid untill proven otherwise 
@@ -200,6 +210,39 @@ def is_valid_move(board, move):
         IsValid = False 
 
     return IsValid
+
+#W2
+def get_valid_moves_for_stone(board, stone): 
+    """ ss
+        -s
+    """
+
+    input_token_x = stone[0]
+    input_token_y = stone[1]
+
+    if (input_token_x == "") or (input_token_x == ""): 
+        return blank_list = [][]
+
+    input_token = board[input_token_y][input_token_x]
+
+    final_list = []
+
+    for y_axis in range(len(board)): 
+
+        for x_axis in range(len(board[y_axis])): 
+            current_token = board[y_axis][x_axis]
+            current_move_pair = ([input_token_y, input_token_x],[y_axis,x_axis])
+
+            if (is_valid_move(board, current_move_pair)): 
+                final_list.append([y_axis, x_axis])
+    
+    return final_list
+
+def get_valid_moves(board, player): 
+    """ s
+        - lsd
+    """
+
 
 if __name__ == '__main__':
     board = generate_board(8)

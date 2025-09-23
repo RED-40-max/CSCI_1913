@@ -1,0 +1,14 @@
+Week 4: computer lab 03 
+
+
+--------------------------------------------------------------------------
+notes / dump: 
+
+
+# use pandas / a pandas thing: 
+
+import pandas as * #i can work with this one.
+def load_pandas() 
+    Lister = pd.read_csv(“/intput/wine-review…csv”)
+    return 
+
