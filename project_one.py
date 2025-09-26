@@ -20,12 +20,11 @@ Notes
             ----------------------------- x_axis
 
 * my editor (VS code) has a black background, so the tokens will be refered to as: 
-    empty token --> u25CB (white)
+    + empty token --> u25CB (white) (1) (○)
         (on my screen this shows up as a black token)
-    filled token --> u25CF (black)
+    + filled token --> u25CF (black) (2) (●)
         (on my screen this shows up as a white token)
-    blank space --> nothing is there / no white or black 
-
+    + blank space --> (0) nothing is there / no white or black 
 * 
 
 """
@@ -38,6 +37,7 @@ def generate_board(an_int):
         * sets alternating tokens for each nested list 
         --> returns the final board 
     """
+    an_int = int(an_int)
 
     final_board = [] # mass / y_axis access
 
@@ -45,6 +45,8 @@ def generate_board(an_int):
         return final_board
 
     #y_axis control
+    previous_val = 1 #make the very 
+
     for y_axis in range(an_int): 
         inner_board = [] # x_axis acesss, resests each time
 
@@ -56,72 +58,78 @@ def generate_board(an_int):
             inner_board.append(previous_val)
 
         #x_axis control 
-        for x_axis in range(an_int -1 ): 
+        for x_axis in range(an_int - 1 ): 
 
             if (previous_val == 1): #if it starts with 1 
-                inner_board.append(2) #if the last one was 1, add 2
                 previous_val = 2 #change the value for the next iter
+                inner_board.append(previous_val) #if the last First_token_ was 1, add 2
+
             elif (previous_val == 2): 
-                inner_board.append(1) 
-                previous_val = 1
+                previous_val = 1 #change the value for the next iter
+                inner_board.append(previous_val) 
 
         final_board.append(inner_board) #at the end of the inner row, enter it to y_axis row
 
     return final_board
 
 def get_board_as_string(board): 
-    """ Prints the board given the input
+    """ Converts the board data into a string 
         --> input is the board as a nested list 
-        * prints the colum number 
-        * prints row number + token 
-        * prints seperation bars 
-        --> overall, outputs a formatted / cleaned board w/ row + column numbers
+        * adds the colum number 
+        * adds row number + token 
+        * adds seperation bars 
+        --> overall, creates a string that is for the board 
     """
-
-    #prints the x_axis on top 
-    print("   ", end = "")
-
-    for y_axis in range(len(board)): 
-        print(f"{y_axis} ", end = "") # prints column no.
-
-    print("")
+    final_board = ""
     
-    #prints the rows 
+    #puts the x_axis on top 
+    
+    final_board += "    "
+
+    for x_axis in range(len(board[0])): 
+        final_board += f"{x_axis % 10}   " # adds column no.
+
+    final_board += "\n"
+    
+    #adds the rows 
     for y_axis in range(len(board)): 
 
-        #prints seperation bar
-        print("  +", end ="")
+        #adds seperation bar
+        final_board += "  +"
+        for x_axis in range(len(board[y_axis])): 
+            final_board += f"-+"
+        final_board += "\n"
 
-        for x_axis in range(len(board)): 
-            print("-+", end = "")
-        print("")
-
-        #prints row no. + tokens
-        print(f"{y_axis} |", end = "") # prints row no.
+        #adds row no. + tokens
+        final_board += f"{y_axis % 10} |"
     
         for x_axis in range(len(board[y_axis])): 
-            symbol_of_token = " "
+            symbol_of_token = 0 #assumes blank space untill proven
 
-            if (board[y_axis][x_axis] == 1): #blank token 
+            if (board[y_axis][x_axis] == 1): #empty token 
                 symbol_of_token = "\u25CB" # to use unicode in python, use escape sequence
             elif (board[y_axis][x_axis] == 2): #a filled token 
                 symbol_of_token = "\u25CF"
+            else:  #otherwise it is a blank token, and represent as such
+                symbol_of_token = " "
 
-            print(f"{symbol_of_token}|", end = "")
-        print("")
+            final_board += f"{symbol_of_token}|" 
 
-    #prints last row's sepreation bar
-    print("  +", end ="")
+        final_board += "\n"
 
-    for x_axis in range(len(board)): #prints seperation row
-        print("-+", end = "")
-    print("")
+    #adds last row's sepreation bar
+    final_board += "  +"
+    for x_axis in range(len(board[0])): 
+        final_board += f"-+"
+    final_board += "\n"
+
+    return final_board
     
 def prep_board_human(board): 
     """ Shows board + asks human to make a move 
         --> input is the current nested list board 
         --> outputs / prints a board 
-            * asks human to input valiues 
+            * asks human to input values 
             * checks if values are within bounds of rules 
                 * if not, asks to re-enter value
             * executes the move 
@@ -132,84 +140,119 @@ def prep_board_human(board):
     while(waiting_for_valid_move): # loop for valid move 
         
         # prints board as a string 
-        get_board_as_string(board) 
+        print(get_board_as_string(board))  
 
-        t1_y_axis =  int(input("token 1 row: "))
-        t1_x_axis = int(input("token 1 colum: "))
-        t2_y_axis =  int(input("token 2 row: "))
-        t2_x_axis = int(input("token 2 colum: "))
+        start_token_y =  int(input("token 1 row: "))
+        start_token_x = int(input("token 1 colum: "))
+        end_token_y =  int(input("token 2 row: "))
+        end_token_x = int(input("token 2 colum: "))
         
-        move = [[t1_y_axis, t1_x_axis],[t2_y_axis, t2_x_axis]]
+        move = ((start_token_y, start_token_x),(end_token_y, end_token_x))
 
-        if is_valid_move(board, move):
+        #checks on the First_token_ move
+        Is_valid_First_token__move = True 
+
+        #index check + edge check 
+        if(start_token_x >= len(board)-1) or (start_token_y >= len(board) -1): #edge check 
+            print("token 1 position is too big")
+            Is_valid_First_token__move = False 
+        elif (end_token_x >= len(board) - 1) or (end_token_y >= len(board) - 1): #edge check 
+            print("token 1 position is too big")
+            Is_valid_First_token__move = False 
+        elif (start_token_x < 0) or (start_token_y < 0): 
+            print("token 1 position cannot be negetive")
+            Is_valid_First_token__move = False 
+        elif (end_token_x < 0) or (end_token_y < 0): 
+            print("token 2 position cannot be negetive")
+            Is_valid_First_token__move = False 
+        
+        #converts
+        token_1 = board[start_token_y][start_token_x]
+        token_2 = board[end_token_y][end_token_x]
+
+        #token type check
+        if(token_1 == token_2): #if both tokens are same (this check can only be dFirst_token_ after validating index)
+            print("same token type - try again")
+            Is_valid_First_token__move = False 
+        
+        #final discitions 
+        if Is_valid_First_token__move:
+            waiting_for_valid_move = False 
             # Mutate only if move was valid
-            board[t1_y_axis][t1_x_axis] = " "
-            board[t2_y_axis][t2_x_axis] = " "
-            break  # exit the loop
+            board[start_token_y][start_token_x] = 0
+            board[end_token_y][end_token_x] = 0
+            return None # exit the loop
         else:
             print("Invalid move, try again!\n")
 
+#vvv fix all this vvv
 def is_valid_move(board, move): 
     """ Checks if move is within bounds of rules 
         --> inputs a nested list board
         --> inputs a nested move list 
-        * checks tokens of the inputed values 
-        * checks if the index / coordinates are valid 
-        * checks if any of the tokens / cooridnates are at the edge of the board 
+        * 
         --> outputs a boolean indicating if it is or isn't a valid move
     """
-    
-    IsValid = True # valid untill proven otherwise 
 
-    t1_y_axis = move[0][0]
-    t1_x_axis = move[0][1]
-    
+    #converting the moves 
+    start_token_y = move[0][0]
+    start_token_x = move[0][1]
+    end_token_y = move[1][0]
+    end_token_x = move[1][1]
 
-    t2_y_axis = move[1][0]
-    t2_x_axis = move[1][1]
+    #index check - is moves within bounds
+    if(start_token_x >= len(board)) or (start_token_y >= len(board) ): 
+        return False 
+    elif (end_token_x >= len(board) ) or (end_token_y >= len(board) ): 
+        return False 
+    elif (start_token_x < 0) or (start_token_y < 0): 
+        return False 
+    elif (end_token_x < 0) or (end_token_y < 0): 
+        return False  
 
-    #checks if token move is valid 
-
-   #index check
-    if(t1_x_axis >= len(board)) or (t1_y_axis >= len(board)): 
-        print("token 1 position is too big")
-        return False #immidently return becuse other functions will index error
-    elif (t2_x_axis >= len(board)) or (t2_y_axis >= len(board)): 
-        print("token 1 position is too big")
+    # starting position has a token, ending is blank space
+    if (board[start_token_y][start_token_x] == 0): 
         return False
-    elif (t1_x_axis >= len(board)) or (t1_y_axis >= len(board)): 
-        print("token 1 position cannot be negetive")
-        return False
-    elif (t2_x_axis >= len(board)) or (t2_y_axis >= len(board)): 
-        print("token 2 position cannot be negetive")
+    if not (board[end_token_y][end_token_x] == 0): 
         return False
     
+    #the jump is only in one direction 
+    delta_x = start_token_x - end_token_x 
+    delta_y = start_token_y - end_token_y
 
-    #converts
-    token_1 = board[t1_y_axis][t1_x_axis]
-    token_2 = board[t2_y_axis][t2_x_axis]
-
-    #token type check
-    if(token_1 == token_2): #if both tokens are same (this check can only be done after validating index)
-        print("same token type - try again")
-        IsValid = False 
+    if (not(delta_x == 0) and not(delta_y == 0)): # if it moves like a bishop from chess - not in due cardinal directions
+        return False
+    elif ((delta_x == 0 and delta_y == 0)): #same 
+        return False
     
-    #edge check
-    if (t1_x_axis == 0) or (t1_y_axis == 0):  # if token 1 on edge of board 
-        print("token 1, on board edge - try again")
-        IsValid = False 
-    elif (t1_x_axis == len(board)) or (t1_y_axis == len(board)): 
-        print("token 1, on board edge - try again")
-        IsValid = False 
+    #checking stones between the spaces 
+    start_token = board[start_token_y][start_token_x]
 
-    if (t2_x_axis == 0) or (t2_y_axis == 0): #if token 2 on edge of board 
-        print("token 1, on board edge - try again")
-        IsValid = False 
-    elif (t2_x_axis == len(board)) or (t1_y_axis == len(board)): 
-        print("token 1, on board edge - try again")
-        IsValid = False 
+    #step calculations 
+    if (delta_y > 0): 
+        step = 1 #moving up 
+    elif (delta_y < 0): 
+        step = -1 #moving down 
+    elif (delta_x > 0): 
+        step = 1 #moving right
+    else: 
+        step = -1 #moving left
 
-    return IsValid
+    if delta_x == 0: 
+        for y in range(start_token_y + step, end_token_y, step): 
+            if(board[y][start_token_x]== 0): #over empty space
+                return False
+            elif( start_token == board[y][start_token_x]): #over same token, since y is changing 
+                return False
+    elif delta_y == 0: 
+        for x in range(start_token_x + step, end_token_x, step): 
+            if(board[start_token_y][x]== 0): #over empty space
+                return False
+            elif(start_token == board[start_token_y][x]): #over same token, since y is changing 
+                return False
+
+    
+    return True
 
 #W2
 def get_valid_moves_for_stone(board, stone): 
@@ -221,7 +264,7 @@ def get_valid_moves_for_stone(board, stone):
     input_token_y = stone[1]
 
     if (input_token_x == "") or (input_token_x == ""): 
-        return blank_list = [][]
+        return [] # return a blank list 
 
     input_token = board[input_token_y][input_token_x]
 
@@ -238,16 +281,41 @@ def get_valid_moves_for_stone(board, stone):
     
     return final_list
 
-def get_valid_moves(board, player): 
-    """ s
-        - lsd
-    """
+def get_valid_moves(board, player):
+   """ s
+       - lsd
+   """ 
 
+   final_list = [] #make a blank list
 
-if __name__ == '__main__':
-    board = generate_board(8)
-    get_board_as_string(board)
-    prep_board_human(board)
-    get_board_as_string(board)
+   for y_axis in range(len(board)):
+
+        for x_axis in range(len(board[y_axis])): 
+
+            if(token == player): 
+                token_position = [y_axis, x_axis ]
+                final_list += (get_valid_moves_for_stone(token_position))
+
+   return final_list 
+
+def human_player(board, player): 
+    #whatnot 
+    return 0
+
+def random_player(board, player): 
+    #
+    return 0
+
+#W3 
+def ai_player(board, player): 
+    #stuff 
+    return 0 
+
+def play_game(): 
+    #things
+    return 0
+
+if __name__ == "__main__":
+    print(get_board_as_string(generate_board(input("user: "))))
     
 

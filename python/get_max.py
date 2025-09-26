@@ -6,10 +6,14 @@ week 4: algorithums
 import math
 
 def get_max(*values):
+
   current_max = None
-  for v in values:
-    if current_max == None or v > current_max:
-      current_max = v
+
+  for x in values:
+
+    if (current_max == None) or (x > current_max):
+      current_max = x
+
   return current_max
 
 if __name__ == "__main__":
