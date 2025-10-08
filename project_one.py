@@ -29,6 +29,8 @@ Notes
 
 """
 
+import random 
+
 #W1
 def generate_board(an_int): 
     """ Creates a int square board with checkerbord values 
@@ -153,10 +155,10 @@ def prep_board_human(board):
         Is_valid_First_token__move = True 
 
         #index check + edge check 
-        if(start_token_x >= len(board)-1) or (start_token_y >= len(board) -1): #edge check 
+        if(start_token_x >= len(board)) or (start_token_y >= len(board) ): #edge check 
             print("token 1 position is too big")
             Is_valid_First_token__move = False 
-        elif (end_token_x >= len(board) - 1) or (end_token_y >= len(board) - 1): #edge check 
+        elif (end_token_x >= len(board) ) or (end_token_y >= len(board) ): #edge check 
             print("token 1 position is too big")
             Is_valid_First_token__move = False 
         elif (start_token_x < 0) or (start_token_y < 0): 
@@ -185,7 +187,6 @@ def prep_board_human(board):
         else:
             print("Invalid move, try again!\n")
 
-#vvv fix all this vvv
 def is_valid_move(board, move): 
     """ Checks if move is within bounds of rules 
         --> inputs a nested list board
@@ -201,14 +202,10 @@ def is_valid_move(board, move):
     end_token_x = move[1][1]
 
     #index check - is moves within bounds
-    if(start_token_x >= len(board)) or (start_token_y >= len(board) ): 
-        return False 
-    elif (end_token_x >= len(board) ) or (end_token_y >= len(board) ): 
-        return False 
-    elif (start_token_x < 0) or (start_token_y < 0): 
-        return False 
-    elif (end_token_x < 0) or (end_token_y < 0): 
-        return False  
+    if not(0 <= start_token_y < len(board)) and (0 <= start_token_x < len(board[0])):
+            return False
+    if not(0 <= end_token_y < len(board)) and (0 <= end_token_x < len(board[0])):
+            return False
 
     # starting position has a token, ending is blank space
     if (board[start_token_y][start_token_x] == 0): 
@@ -224,34 +221,43 @@ def is_valid_move(board, move):
         return False
     elif ((delta_x == 0 and delta_y == 0)): #same 
         return False
+
+    if abs(delta_x) < 2 and abs(delta_y) < 2: # if it moves only one space
+        return False
+    
     
     #checking stones between the spaces 
     start_token = board[start_token_y][start_token_x]
 
-    #step calculations 
-    if (delta_y > 0): 
-        step = 1 #moving up 
-    elif (delta_y < 0): 
-        step = -1 #moving down 
-    elif (delta_x > 0): 
-        step = 1 #moving right
-    else: 
-        step = -1 #moving left
+    
 
     if delta_x == 0: 
-        for y in range(start_token_y + step, end_token_y, step): 
-            if(board[y][start_token_x]== 0): #over empty space
+        #step calculations 
+        if (delta_y > 0): 
+            step = 1 #moving down 
+        elif (delta_y < 0): 
+            step = -1 #moving up 
+
+        for y in range(start_token_y + step, end_token_y, step):
+            current = board[y][start_token_x] 
+            if(current == 0): #over empty space
                 return False
-            elif( start_token == board[y][start_token_x]): #over same token, since y is changing 
+            elif( start_token == current): #over same token, since y is changing 
                 return False
-    elif delta_y == 0: 
+    else: 
+        #step calcs 
+        if (delta_x > 0): 
+            step = 1 #moving right
+        else: 
+            step = -1 #moving left
+
         for x in range(start_token_x + step, end_token_x, step): 
-            if(board[start_token_y][x]== 0): #over empty space
+            current = board[start_token_y][x]
+            if(current== 0): #over empty space
                 return False
-            elif(start_token == board[start_token_y][x]): #over same token, since y is changing 
+            elif(start_token == current): #over same token, since y is changing 
                 return False
 
-    
     return True
 
 #W2
@@ -260,20 +266,23 @@ def get_valid_moves_for_stone(board, stone):
         -s
     """
 
-    input_token_x = stone[0]
-    input_token_y = stone[1]
+    input_token_y = stone[0]
+    input_token_x = stone[1]
 
-    if (input_token_x == "") or (input_token_x == ""): 
-        return [] # return a blank list 
+    if not ((0 <= input_token_y < len(board)) and (0 <= input_token_x < len(board[0]))):
+        return []
 
     input_token = board[input_token_y][input_token_x]
+
+    # No moves possible if this sq is empty
+    if input_token == 0:
+        return []
 
     final_list = []
 
     for y_axis in range(len(board)): 
 
         for x_axis in range(len(board[y_axis])): 
-            current_token = board[y_axis][x_axis]
             current_move_pair = ([input_token_y, input_token_x],[y_axis,x_axis])
 
             if (is_valid_move(board, current_move_pair)): 
@@ -291,31 +300,99 @@ def get_valid_moves(board, player):
    for y_axis in range(len(board)):
 
         for x_axis in range(len(board[y_axis])): 
+            token = board[y_axis][x_axis] 
 
             if(token == player): 
-                token_position = [y_axis, x_axis ]
-                final_list += (get_valid_moves_for_stone(token_position))
+                token_position = (y_axis, x_axis)
+                final_list.extend(get_valid_moves_for_stone(board, token_position))
 
    return final_list 
 
 def human_player(board, player): 
-    #whatnot 
+    """ m 
+    - lsdj
+    """
+
+    if not(get_valid_moves(board, player)):
+        print(f"No valid moves")
+        return ()
+
+    #similar to the first move metric 
+
+    waiting_for_valid_move = True 
+
+    while(waiting_for_valid_move): # loop for valid move 
+        print(get_board_as_string(board)) #prints the board down 
+
+        start_token_y = int(input("Enter start row: "))
+        start_token_x = int(input("Enter start column: "))
+        end_token_y = int(input("Enter end row: "))
+        end_token_x = int(input("Enter end column: "))
+
+        move = ((start_token_y, start_token_x), (end_token_y, end_token_x)) #move
+        
+        #final discitions 
+        if (is_valid_move(board, move)):
+            waiting_for_valid_move = False 
+            # Mutate only if move was valid
+            return move # exit the loop
+        else:
+            print("Invalid move, try again!\n")
+
+    
     return 0
 
 def random_player(board, player): 
-    #
-    return 0
+    """s
+    - sdf
+    """
+
+    move_list = get_valid_moves(board, player)
+
+    if not(move_list):
+        print(f"No valid moves")
+        return ()
+    
+    random_index = randint(0, len(move_list) -1)
+
+    return move_list[random_index]
 
 #W3 
 def ai_player(board, player): 
-    #stuff 
+    """ x 
+    - 
+    - reactive machine 
+    two-steps ahead 
+    a0 = current board state w/ the last turn being the ops
+    a1_pl [] = all the next possible board states for player to take
+        --> call get_valid_moves(board, player) 
+
+    a2_op [] = all the next possible board states for op to take after a1_pl
+
+        op_moves = get_valid_moves(board, player)
+        for x in range(len(get_valid_moves(board, player))): 
+            new_board = (simulate and store the move)
+            op_moves[x] = len(get_valid_moves(new_board, oponent))
+        
+
+
+    'scores' a1_pl based on best practices for konea moves - based on heuristics: 
+        -1 * (number of moves op has in response to a1_pl)
+            --> accounts for how many moves op has 
+            --> accounts for how many tokens player took last turn 
+        
+
+
+    takes top 3 scores and randomly picks one 
+
+    """
+    
+
+
+
+
     return 0 
 
 def play_game(): 
     #things
     return 0
-
-if __name__ == "__main__":
-    print(get_board_as_string(generate_board(input("user: "))))
-    
-

@@ -1,4 +1,4 @@
-from project_one.py import generate_board, get_board_as_string, is_valid_move,\
+from project_one import generate_board, get_board_as_string, is_valid_move,\
       prep_board_human, get_valid_moves_for_stone, get_valid_moves, random_player,\
       human_player, play_game
 

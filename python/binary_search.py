@@ -8,7 +8,20 @@ Week 4: searching
 
 
 
-    
+def recursive_binary_search(lst, target, high, low):
+  mid = (low+high)//2
+  
+  if lst[mid] == target:
+    return mid
+  
+  if low > high:
+    return -1
+  
+  if target < lst[mid]:
+    return recursive_binary_search(lst, target, mid-1, low)
+  
+  if target > lst[mid]:
+    return recursive_binary_search(lst, target, high, mid+2)
  
 
 
