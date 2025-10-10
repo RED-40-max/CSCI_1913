@@ -28,7 +28,7 @@ if __name__ == "__main__":
              [1,2,1,2],
              [2,1,2,1],]
 
-    
+
     print("Testing is_valid_move")
 
     print(get_board_as_string(board))
@@ -127,19 +127,21 @@ if __name__ == "__main__":
              [2, 1, 2, 1, 2, 1, 2, 1, 2, 1],
              [1, 2, 1, 2, 1, 2, 1, 2, 1, 2],
              [2, 1, 2, 1, 2, 1, 2, 1, 2, 1]]
-    
+
     print("Finished running random_player")
 
     print("########################################")
 
     print("Running human_player tests")
-
-    human_player(board, 1)
+    #human_player(board, 1)
 
     print("Finished running human_player")
 
     print("########################################")
 
-    print("Running play_game -- start with prepping the board")
+    #print("Running play_game -- start with prepping the board")
 
-    print(play_game())
+    board = generate_board(10)
+    prep_board_human(board)
+
+    print(play_game(board))
