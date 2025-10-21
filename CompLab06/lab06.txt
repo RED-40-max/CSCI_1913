@@ -1,0 +1,46 @@
+
+NIM.java - A template of this file is provided.
+    You will be completing this file to build the code for
+    managing the NIM game.
+
+student - a directory where the NIM.java file should go
+
+NimTester.java – This file is provided.
+    This file contains tests for the Nim functions.
+    This should be your primary debugging tool for this lab,
+    as the java autograder is typically less clear,
+    and much more fussy than the python autograder.
+
+PlayNIM.java – This file is provided.
+    When your NIM file is complete this should be
+    able to play a 2-player game of nim!
+
+
+
+
+|-- Lab 06
+|-- out
+|   `-- production
+|       `-- student
+|           |-- Main.class
+|           |-- NimTester.class
+|           |-- PlayNIM.class
+|           `-- student
+|               `-- NIM.class
+`-- src
+    |-- Main.java
+    |-- NimTester.java
+    |-- PlayNIM.java
+    `-- student
+        `-- NIM.java
+
+
+
+
+public static int[] createGameState(int size, int tokenMax)
+public static boolean isValidMove(int[] gameState, String row, String takes)
+
+public static void drawGameState(int[] gameState)
+public static int[] update(int[] gameState, int row, int takes)
+
+public static boolean isOver(int[] gameState)
