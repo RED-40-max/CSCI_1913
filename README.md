@@ -1,10 +1,10 @@
-# 🧩 CSCI 1913 — My Code Vault
+# CSCI 1913 — My Code Vault
 
 **Introduction to Algorithms, Data Structures, and Program Development**
 *Fall 2025*
 
 ---
-## 🧠 About This Repository
+## About This Repository
 
 This repository serves as my organized workspace for **CSCI 1913**.
 It includes labs, projects, and personal notes as I build my foundation in algorithms, object-oriented programming, and data structures.
@@ -12,7 +12,7 @@ It includes labs, projects, and personal notes as I build my foundation in algor
 Each folder contains weekly deliverables, practice files, and development experiments — version-controlled for reference and improvement throughout the semester.
 
 ---
-## 🗂️ Repository Structure
+## Repository Structure
 
 ```
 CSCI_1913/
@@ -32,7 +32,7 @@ CSCI_1913/
 ```
 
 ---
-## 🧱 Core Learning Areas
+## Core Learning Areas
 
 > “How do you make a computer think, organize, and remember efficiently?”
 
@@ -52,7 +52,7 @@ CSCI_1913/
 * Performance analysis and comparisons
 
 ---
-## 🧪 Weekly Labs
+## Weekly Labs
 
 Hands-on assignments designed to apply lecture concepts and strengthen programming fundamentals.
 
@@ -66,7 +66,7 @@ Hands-on assignments designed to apply lecture concepts and strengthen programmi
 > **Legend:** ✅ = Completed 🔧 = In Progress x = Not Started
 
 ---
-## 🧠 Projects
+## Projects
 
 | **Project**                  | **Description**                                        | **Language** | **Status** | **Notes**                                                                     |
 | ---------------------------- | ------------------------------------------------------ | ------------ | ---------- | ----------------------------------------------------------------------------- |
@@ -77,7 +77,7 @@ Hands-on assignments designed to apply lecture concepts and strengthen programmi
 > **Legend:** ✅ = Completed 🔧 = In Progress x = Not Started
 
 ---
-## ⚙️ Running Code
+## Running Code
 
 **For Java:**
 
@@ -93,7 +93,7 @@ python3 filename.py
 ```
 
 ---
-## 🧰 Tools & Resources
+## Tools & Resources
 
 * **VS Code** – Development and debugging
 * **Git + GitHub** – Version control and documentation
@@ -101,7 +101,7 @@ python3 filename.py
 * **Google Sheets / Notion** – Personal trackers for progress and notes
 
 ---
-## ⚠️ Academic Integrity
+## ⚠️ Academic Integrity ⚠️
 
 All content here is for **personal educational reference only**.
 Do **not** copy, reuse, or distribute code for course submissions.
