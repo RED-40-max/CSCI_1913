@@ -1,10 +1,13 @@
 package Tests;
+import Card;
+
 /**
  * Original Author: Daniel Kluver
  * Changes by: Adriana Picoral Fall 2025
  * A class that tests the cards class.
  * After implementing the cards class this file should behave as described
  */
+
 public class CardTest {
 
     /**

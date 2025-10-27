@@ -1,4 +1,7 @@
 package Tests;
+import Card;
+import Deck;
+
 /**
  * Original Author: Daniel Kluver
  * Changes by: Adriana Picoral Fall 2025

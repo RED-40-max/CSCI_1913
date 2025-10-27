@@ -10,27 +10,25 @@ Notes
 
  */
 
-public class Card
-{
-    private final int rank;
-    private final int suit;
+
+public final class Card{
+
+    private final int suit ;
+    private final int rank ;
 
     public Card(int rank, int suit)
     {
-        if((rank > 13)&& (rank < 0))//if rank is not valid
+        if (rank < 1 || rank > 13 || suit < 1 || suit > 4)
         {
             System.out.print("Invalid Card");
-        } else if ((suit < 0 )&&(suit > 4))
-        {
-            System.out.print("Invalid Card");
-        }
-        else
+            this.rank = 1;
+            this.suit = 1;
+        } else
         {
             this.rank = rank;
             this.suit = suit;
         }
     }
-
 
     public int getSuitNum(){
         return suit;
@@ -39,7 +37,8 @@ public class Card
         return rank;
     }
 
-    public String getRankName(){
+    public String getRankName()
+    {
         String RankName;
 
         switch(this.rank){
@@ -77,10 +76,10 @@ public class Card
                 RankName = "Jack";
                 break;
             case 12:
-                RankName = "King";
+                RankName = "Queen";
                 break;
             case 13:
-                RankName = "Queen";
+                RankName = "King";
                 break;
             default:
                 RankName = "Invalid";
@@ -89,8 +88,8 @@ public class Card
 
         return RankName;
     }
-
-    public String getSuitName(){
+    public String getSuitName()
+    {
         String SuitName;
         switch(suit)
         {
@@ -104,7 +103,7 @@ public class Card
                 SuitName = "Clubs";
                 break;
             case 4:
-                SuitName = "Dimonds";
+                SuitName = "Diamonds";
                 break;
             default:
                 SuitName = "Invalid";
@@ -122,8 +121,7 @@ public class Card
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj){
         if (!(obj instanceof Card)) { //if it is an instence of card
             return false;
         }
@@ -134,11 +132,16 @@ public class Card
         {
             if(this.suit == other.getSuitNum())
             {
-                return true;
+                if (other == this)
+                {
+                    return true;
+                }
+
             }
         }
         return false;
 
     }
+
 
 }

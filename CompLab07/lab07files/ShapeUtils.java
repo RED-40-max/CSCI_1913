@@ -1,14 +1,19 @@
 /*
+    Shapes Util - program to calculate certain metrics
+    Written by: Nikki, Shawn, Leonard
 
  */
 import static java.lang.Math.sqrt;
 
 public class ShapeUtils {
 
-
+    /**
+     * gets the distance between 2 points given the formula
+     *      distance = sqrt(((x1 - x2)**2) + ((y1 - y2)**2))
+     * The method '.pow' is used to exponentiate the values
+     **/
     public static double distance(Point p1, Point p2)
     {
-        //distance = sqrt(((x1 - x2)**2) + ((y1 - y2)**2))
         double x1 = p1.getX();
         double y1 = p1.getY();
 
@@ -19,7 +24,12 @@ public class ShapeUtils {
             //math.pow(base, exponent)
         return distance;
     }
-
+    /**
+     * gets the cetner of the points by
+     *      - finding avg of x
+     *      - finding avg of y
+     *      - using avgrage point as the center
+     **/
     public static Point getCenter(Point[] points)
     {
         if (points.length == 0)
@@ -49,6 +59,12 @@ public class ShapeUtils {
         return Final_point;
     }
 
+    /**
+     * gets area by using the equation
+     *      - Area = pi * r^2
+     * gets the area of a ring by taking
+     *      - (Area of outer - Area of inner)
+     **/
     public static double getArea(Ring r)
     {
         double innerCircleRad = r.getInnerCircle().getRadius();
@@ -60,13 +76,19 @@ public class ShapeUtils {
         return ( outerCircle - innerCircle);
 
     }
-
+    /**
+     * Gets the Area of a Circle by doing pi * r^2
+     **/
     public static double getArea(Circle c)
     {
         double rad = c.getRadius();
         return (Math.PI * Math.pow(rad, 2));
     }
 
+    /**
+     * Checks if point is in circle to see if it is
+     *      within the center of the radius of the circle
+     **/
     public static boolean isIn(Circle c, Point p)
     {
         Point CenterPoints = c.getCenter();

@@ -1,3 +1,8 @@
+import Card;
+import Deck;
+import Hand;
+
+package Tests;
 /**
  * Original Author: Daniel Kluver
  * Changes by: Adriana Picoral Fall 2025
@@ -36,7 +41,7 @@ public class HandTest {
         doTest(39, deck.cardsRemaining(), "deck.cardsRemaining()");
         System.out.println("card 0 = " + hand.get(0));   // should print a random card
         System.out.println("card 1 = " + hand.get(1));   // should print a different random card
-        
+
         Card c1 = hand.get(0);
         Card c2 = hand.get(1);
 
