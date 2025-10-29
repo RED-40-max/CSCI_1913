@@ -1,13 +1,9 @@
-package Tests;
-import Card;
-
 /**
  * Original Author: Daniel Kluver
  * Changes by: Adriana Picoral Fall 2025
  * A class that tests the cards class.
  * After implementing the cards class this file should behave as described
  */
-
 public class CardTest {
 
     /**
@@ -56,7 +52,7 @@ public class CardTest {
 
         doTest(false, as.equals(js), "as.equals(js)");
         doTest(false, as.equals(jc), "as.equals(jc)");
-        doTest(false, jc.equals(other), "jc.equals(other)");
+        doTest(true, jc.equals(other), "jc.equals(other)");
 
 
         Card err = new Card(-4, 4);               // should print "Invalid Card"

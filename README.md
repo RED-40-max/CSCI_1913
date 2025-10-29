@@ -36,17 +36,17 @@ CSCI_1913/
 
 > “How do you make a computer think, organize, and remember efficiently?”
 
-**Module 1 – Algorithms & Python**
+**Part 1 – Algorithms & Python**
 * Basic to advanced Python syntax
 * Searching and sorting algorithms
 * Big-O and algorithmic complexity
 
-**Module 2 – Java & Object-Oriented Programming**
+**Part 2 – Java & Object-Oriented Programming**
 * Classes, inheritance, and polymorphism
 * Abstract classes, interfaces, and generics
 * Code readability, encapsulation, and reusability
 
-**Module 3 – Data Structures**
+**Part 3 – Data Structures**
 * Arrays, linked lists, stacks, queues, maps, sets, and binary trees
 * Hash tables and graph structures
 * Performance analysis and comparisons
@@ -84,6 +84,9 @@ Hands-on assignments designed to apply lecture concepts and strengthen programmi
 ```bash
 javac FileName.java
 java FileName
+```
+```bash
+java FileName.java
 ```
 
 **For Python:**

@@ -1,3 +1,5 @@
+import Java.ShapeFiles.Tester;
+
 /**
  * ShapeUtilsTester class file.
  * CSCI 1913.
