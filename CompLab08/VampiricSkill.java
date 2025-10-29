@@ -1,3 +1,4 @@
+package CompLab08;
 /* Computer Lab 08: Battle Sim
  *
  * Authors: Nikki Som, Shawn Grove, Leonard Jin
@@ -11,19 +12,18 @@
  *
  */
 
- public class FastSkill extends Skill{
+public class VampiricSkill extends Skill {
 
-    public FastSkill(String name, int strength, int usageLimit)
+    //overloaded constructor that calls super
+    public VampiricSkill(String name, int strength, int usageLimit)
     {
-        super(name, strength,usageLimit); //calls the super constructor
-
+        super(name, strength, usageLimit);
     }
 
     @Override
-    /* Damanges foe and keeps time the same
+    /* Damanges foe and Strengthens me
      *
-     * the super class is overriden for this method, so that it now subtracts the time from OG.
-     *      as a result, time remains the same
+     * the super class is overriden for this method, so that it now additionally 'steals' the strength
      *
      * me = object of self
      * foe = object of opposition
@@ -31,10 +31,7 @@
     public void applyChanges(CodeMonster me, CodeMonster foe)
     {
         super.applyChanges(me, foe);
-
-        double currentTime = me.getNextTurnTime();
-        double speed = me.getSpeedScore();
-
-        me.setNextTurnTime(currentTime - speed); //give back time
+        me.adjustHealth(getStrength()); //strengthens
     }
+
 }

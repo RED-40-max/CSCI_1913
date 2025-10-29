@@ -1,13 +1,10 @@
 /*
-    Project 2: UnoWar
-    Author: Roshinikitha Somasundram
-    Class summery: Deck
-
-Notes
--------------------------------------------------
-
-
-*/
+ *   Project 2: UnoWar
+ *   Author: Roshinikitha Somasundram
+ *   Class summery: Deck
+ *
+ * ---------- Notes --------------------
+ */
 
 import java.util.ArrayList;
 import java.util.Random;

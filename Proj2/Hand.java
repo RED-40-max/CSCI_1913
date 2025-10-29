@@ -1,12 +1,10 @@
 /*
-    Project 2: UnoWar
-    Author: Roshinikitha Somasundram
-    Class summery: Deck
-
-Notes
--------------------------------------------------
-
-*/
+ *   Project 2: UnoWar
+ *   Author: Roshinikitha Somasundram
+ *   Class summery: Hand
+ *
+ * ---------- Notes --------------------
+ */
 
 
 public class Hand {

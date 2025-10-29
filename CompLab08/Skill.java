@@ -1,3 +1,4 @@
+package CompLab08;
 /* Computer Lab 08: Battle Sim
  *
  * Authors: Nikki Som, Shawn Grove, Leonard Jin
@@ -10,6 +11,7 @@
  *     FastSkill.java – special skill that refunds turn time
  *
  */
+
 public class Skill
 {
     protected  String name;

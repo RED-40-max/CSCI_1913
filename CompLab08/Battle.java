@@ -1,3 +1,4 @@
+package CompLab08;
 /* Computer Lab 08: Battle Sim
  *
  * Authors: Nikki Som, Shawn Grove, Leonard Jin

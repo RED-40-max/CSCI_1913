@@ -1,9 +1,8 @@
-import CodeMonster;
-import FastSkill;
-import Skill;
-import VampiricSkill;
-package CompLab08.Tests;
+import CompLab08.CodeMonster;
+import CompLab08.FastSkill;
 import CompLab08.HealingSkill;
+import CompLab08.Skill;
+import CompLab08.VampiricSkill;
 
 public class MoreSkillsTester {
     public static void main(String[] args) {

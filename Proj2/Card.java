@@ -1,15 +1,10 @@
 /*
-    Project 2: UnoWar
-    Author: Roshinikitha Somasundram
-    Class summery: Card
-        -->
-
-Notes
--------------------------------------------------
-
-
+ *   Project 2: UnoWar
+ *   Author: Roshinikitha Somasundram
+ *   Class summery: Card
+ *
+ * ---------- Notes --------------------
  */
-
 
 public final class Card{
 

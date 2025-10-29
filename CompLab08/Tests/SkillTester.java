@@ -1,5 +1,5 @@
-import CodeMonster;
-import Skill;
+import CompLab08.CodeMonster;
+import CompLab08.Skill;
 
 package CompLab08.Tests;
 /**

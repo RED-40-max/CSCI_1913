@@ -1,6 +1,3 @@
-import CodeMonster;
-import Skill;
-
 package CompLab08;
 public class HealingSkill extends Skill {
 
