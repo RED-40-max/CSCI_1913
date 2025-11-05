@@ -3,6 +3,9 @@
  *   Author: Roshinikitha Somasundram
  *   Class summery: Deck
  *
+ * (DONE) CODE
+ * ADD COMMENTS
+ *
  * ---------- Notes --------------------
  */
 

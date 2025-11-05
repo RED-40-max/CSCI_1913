@@ -3,13 +3,16 @@
  *   Author: Roshinikitha Somasundram
  *   Class summery: Card Pile
  *
+ * (DONE) CODE
+ * (DONE) COMMENTS
+ *
  * ---------- Notes --------------------
  */
 
 public class CardPile
 {
     private Card topCard;
-    private int pileSize;
+    private int numCards;
 
     //constructor,
     public CardPile(Card topCard)
@@ -34,6 +37,10 @@ public class CardPile
 
     }
 
+    /* Checks if the card can be played, then plays a card if valid
+     *      if card cannot be played, prints according error messege
+     *      otherwise, it replaced the card preposed to play, as the current top card
+     */
     public void play(Card card)
     {
         if (!(canPlay(card)))
@@ -47,9 +54,15 @@ public class CardPile
 
     }
 
+//getters
     public int getNumCards()
     {
+        return numCards;
+    }
 
+    public Card getTopCard()
+    {
+        return topCard;
     }
 
 

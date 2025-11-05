@@ -3,6 +3,9 @@
  *   Author: Roshinikitha Somasundram
  *   Class summery: Hand
  *
+ *  (DONE) CODE
+ *  ADD Comments
+ *
  * ---------- Notes --------------------
  */
 

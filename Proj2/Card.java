@@ -3,6 +3,10 @@
  *   Author: Roshinikitha Somasundram
  *   Class summery: Card
  *
+ * (DONE) CODE
+ * ADD Comments
+ *
+ *
  * ---------- Notes --------------------
  */
 
