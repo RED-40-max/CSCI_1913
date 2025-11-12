@@ -2,11 +2,9 @@
  *   Project 2: UnoWar
  *   Author: Roshinikitha Somasundram
  *   Class summery: Card Pile
- *
- * (DONE) CODE
- * (DONE) COMMENTS
- *
- * ---------- Notes --------------------
+ *          - Tracks pile of cards + total num of cards
+ *          - Rules for the discard pile, what can be added to it, when it resets
+ *          - canPlay() only if valid card
  */
 
 public class CardPile
@@ -14,16 +12,23 @@ public class CardPile
     private Card topCard;
     private int numCards;
 
-    //constructor,
     public CardPile(Card topCard)
     {
         this.topCard = topCard;
+        this.numCards = 1;
     }
 
-    /* Determines wheather a card can be played
-     *    can only if it's bigger or equal in rank to the top card
-     *      or same in suit to the top card
-     *    otherwise it cannot be played
+
+    /* Method that determines whether a new card can be legally played
+     *
+     * A card can be played if:
+     *      - Its rank is greater than or equal to the top card’s rank
+     *        OR
+     *      - Its suit matches the suit of the top card
+     *
+     * Returns:
+     *      - true  → card can be legally played
+     *      - false → move is illegal
      */
     public boolean canPlay(Card card)
     {
@@ -37,19 +42,30 @@ public class CardPile
 
     }
 
-    /* Checks if the card can be played, then plays a card if valid
-     *      if card cannot be played, prints according error messege
-     *      otherwise, it replaced the card preposed to play, as the current top card
+    /* Method that attempts to play a card on the pile
+     *
+     * Steps:
+     *      - Checks if the card is playable using canPlay()
+     *      - If not playable → prints "Illegal move detected!"
+     *      - If playable → sets this card as the new top card
+     *                      and increments the pile count
      */
     public void play(Card card)
     {
+        if (card == null)
+        {
+            System.out.print("Illegal move detected!");
+            return;
+        }
+
         if (!(canPlay(card)))
         {
             System.out.print("Illegal move detected!");
         }
-        else //adds another card to the card pile making this the new top card
+        else
         {
-            topCard = card;
+            topCard = card;          // update top card
+            numCards = numCards + 1; // increase pile size
         }
 
     }
