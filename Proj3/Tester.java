@@ -1,4 +1,4 @@
-package tst;
+
 /**
  * Tester class file.
  * CSCI 1913.

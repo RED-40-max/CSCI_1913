@@ -1,5 +1,8 @@
-package src;
 package tst;
+import CharBag;
+import LetterSample;
+import Tester;
+
 public class CharBagTest {
     public static void main(String[] args) {
         int errors = 0;
