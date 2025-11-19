@@ -1,3 +1,7 @@
+import Gibberisher;
+package files;
+import tst.Tester;
+
 public class GibberisherMain {
 
     public static String[] runGibberisherTest(int segmentLength, int wordTests) {

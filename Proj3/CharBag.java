@@ -8,6 +8,8 @@
  *
  */
 
+import files.LetterSample;
+
 public class CharBag
 {
     private int[] freqs;

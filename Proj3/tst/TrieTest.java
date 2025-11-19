@@ -1,6 +1,4 @@
-package src;
 package tst;
-import Tester;
 import Trie;
 
 public class TrieTest {

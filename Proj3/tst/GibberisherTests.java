@@ -1,9 +1,9 @@
 package tst;
+
 import java.util.Set;
 import java.util.TreeSet;
 
 import Gibberisher;
-import Tester;
 
 public class GibberisherTests {
     public static void main(String[] args) {

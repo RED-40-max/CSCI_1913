@@ -1,5 +1,4 @@
 package tst;
-import Tester;
 import TrieNode;
 
 public class TrieNodeTest {

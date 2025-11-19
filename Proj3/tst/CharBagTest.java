@@ -1,7 +1,6 @@
 package tst;
 import CharBag;
-import LetterSample;
-import Tester;
+import files.LetterSample;
 
 public class CharBagTest {
     public static void main(String[] args) {

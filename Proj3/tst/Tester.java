@@ -1,3 +1,4 @@
+package tst;
 
 /**
  * Tester class file.
