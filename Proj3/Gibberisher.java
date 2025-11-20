@@ -1,12 +1,16 @@
-/* DONE CODE (do comments)
+/*
  * Project 3: Word Scramble
  *   Author: Roshinikitha Somasundram
  *   Class summary: Gibberisher
+ *      - trains a model using letter segment samples.
+ *      - Each segment maps to a CharBag that contains freq of next char.
+ *      - Can generate new “gibberish” words based on patterns.
  *
  *
  */
 
-import files.LetterSample;
+
+
 
 public class Gibberisher
 {
@@ -14,8 +18,9 @@ public class Gibberisher
     private int segmentLength;
     private int samplesProcessed;
 
-    /* Method that messes around eyeyey
-     *
+    /* Constructor makes segment length and creates the Trie model.
+     *      --> Starts w zero samples.
+     *      --> makes an empty Trie to store CharBags.
      */
     public Gibberisher(int segmentLength)
     {
@@ -24,11 +29,22 @@ public class Gibberisher
 
         letterModel = new Trie<CharBag>();
         //insitlaizes the Trie variable
+    }
+
+    //getter
+    public int getSampleCount()
+    {
+        return samplesProcessed;
 
     }
 
-    /* Method that messes around eyeyey
-     *
+    /* Method that Trains the model
+     *      --> gets data (array of string)
+     *      --> for each string, augment it to create more data
+     *          --> break into segment + next char
+     *          --> for each segment, method updates Charbag for freq
+     *          --> inc processed samples
+     *     --> end up with freqnecy for each char on each segments
      */
     public void train(String[] str)
     {
@@ -67,23 +83,18 @@ public class Gibberisher
 
     }
 
-    /* Method that messes around eyeyey
-     *
-     */
-    public int getSampleCount()
-    {
-        return samplesProcessed;
 
-    }
-
-
-    /* Method that messes around eyeyey
+    /* Method that generates and returns a new word
+     *      --> new word based on trained model
+     *      --> start w/ empty string
+     *              --> asks model to generate the last char over and over
+     *              --> until the model says it should stop
+     *      --> outputs that final string
      *
      */
     public String generate()
     {
         String word = "";
-
 
         while(word.length() == 0 || word.charAt(word.length() - 1) != LetterSample.STOP) //while it dosn't end w/ stop letter
         {
@@ -115,9 +126,7 @@ public class Gibberisher
             word += next;  //word = word + nextletter
 
         }
-        return word;
-
-        //return word
+        return word; // return the final string
 
     }
 

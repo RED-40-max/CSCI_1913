@@ -1,9 +1,10 @@
-/* DONE CODE (do comments)
+/* DONE
  * Project 3: Word Scramble
  *   Author: Roshinikitha Somasundram
- *   Class summary: TrieNode
- *
- *
+ *   Class Summary: TrieNode
+ *      - A single node in a trie data struct.
+ *      - store val and 26 children ('a'–'z').
+ *      - CRUD child nodes and count size (w/ recusion)
  */
 
 
@@ -16,7 +17,8 @@ public class TrieNode <T>
 
 
     /* Constructor
-     *
+     *      --> creates a new obj
+     *      --> creates 26 null children
      */
     public TrieNode()
     {
@@ -26,29 +28,50 @@ public class TrieNode <T>
         }
     }
 
-    //returns the data of this node
-    public T getData()
-    {
-        return currVal;
-    }
-
-    //sets data
+    //setter
     public void setData(T data)
     {
         this.currVal = data;
     }
 
-    /* Method that messes around eyeyey
-     *
+    //getter
+    public T getData()
+    {
+        return currVal;
+    }
+
+     /* Method that gets tree size
+     *      -> counts by starting at this node
+     *      --> loop thorught child and adds to count
+     */
+    public int getTreeSize()
+    {
+        int size = 1; // counting this node
+
+        // loop through every child
+        for (int i = 0; i < childs.length; i++)
+        {
+            if (childs[i] != null) //base case: the child is null
+            {
+                size += childs[i].getTreeSize(); // recursive case: add subtree size
+            }
+        }
+
+        return size; //base case fufilled, return size
+
+    }
+
+    /* Method that returns the child node corresponding to the given letter.
+     *      If the child not exist --> create it.
+     *      If the char not valid --> returns null.
      */
     public TrieNode<T> getChild(char letter)
     {
-
         if(!(Character.isLetter(letter))) // filter to catch non-chars
         {
             return null;
         }
-        else //otherwise it's not a charecter that needs to be stopped, but could be upper
+        else //otherwise it's not a char that needs to be stopped, but could be upper
         {
             letter = Character.toLowerCase(letter); // makes it lower case
 
@@ -56,9 +79,7 @@ public class TrieNode <T>
             {
                 return null;
             }
-
         }
-
 
         int index = letter - 'a';
 
@@ -71,29 +92,4 @@ public class TrieNode <T>
         // Return the TrieNode stored here
         return childs[index];
     }
-
-     /* Method that messes around eyeyey
-     * - rec
-     */
-    public int getTreeSize()
-    {
-        int size = 1; // counting this node
-
-        // loop through every child
-        for (int i = 0; i < childs.length; i++)
-        {
-            if (childs[i] != null) //base case: the child is null
-            {
-                size += childs[i].getTreeSize(); // recursively add subtree size
-            }
-        }
-
-        return size; // in which case return all up to that point
-
-    }
-
-
-
-
-
 }
